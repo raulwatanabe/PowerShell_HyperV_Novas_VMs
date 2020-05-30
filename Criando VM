@@ -1,0 +1,20 @@
+New-VM -name ubuntu18 -MemoryStartBytes 1GB
+
+New-VHD -path "c:\Users\Public\Documents\Hyper-v\Virtual Hard Disks\ubuntu18.vhdx" -sizebytes 150GB -fixed
+
+Add-VMHardDiskDdrive -VMName ubuntu18 -path "c:\Users\Public\Documents\Hyper-v\Virtual Hard Disks\ubuntu18.vhdx" -ControllerType IDE -ControllerNumber 0 -ControllerLocation 1
+
+
+Add-VMSwitch -Name SwitchRede1
+New-VMSwitch -Name SwitchRede1 -NetAdapterName Ethernet -AllowManagementOS $true
+New-VMSwitch -Name SwitchRede1 -NetAdapterName "Embedded 10M 1 Port 1" -AllowManagementOS $true
+
+
+Connect-VMNetworkAdapter -VMName ubuntu18 -VMNetworkAdapter "Adaptador de Rede" -SwitchName SwitchRede1
+
+Set-VMDvdDrive -VMName ubuntu18 -ControllerNumber 1 -path "c:\Users\Public\Documents\ubuntu-18.04.4-live-server-amd64.iso"
+
+####- Após a instalação da VM via iso, desconectar o dvd da VM assim:
+
+Remove-VMDvdDrive -VMName ubuntu18 -ControllerNumber 1 -ControllerLocation 0
+
