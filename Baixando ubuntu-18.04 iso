@@ -1,0 +1,4 @@
+## Comando:
+
+Invoke-WebRequest -uri "http://releases.ubuntu.com/18.04.4/ubuntu-18.04.4-live-server-amd64.iso" -UseBasicParsing -OutFile c:\Users\Public\Documents\ubuntu-18.04.4-live-server-amd64.iso
+
