@@ -1,0 +1,13 @@
+## Para criar um Check Point na VM ;)
+
+Checkpoint-VM -Name Ubuntu18 -SnapShotName "Ubuntu com Docker-Django-Postgres Ok"
+
+- Um CheckPoint produz uma pausa nas gravações do arquivo VHDX atual (que representa o HD) e cria um novo arquivo que salva todas as modificações futuras (daqui em diante) e as usa em conjunto com o(s) arquivo(s) anterior(es) para compor o "HD".
+- Desta forma permite que possamos "desfazer" as ultimas alterações, "retornando" ao ponto (CheckPoint) anterior.
+- No VMWare este mesmo recurso é chamado de Snapshot.
+
+- Para consultar os checkpoints de uma vm:
+Get-VMSnapshot -VMName Ubuntu18
+
+- Para "voltar" um CheckPoint anterior:
+Restore-VMSnapshot -VMName Ubuntu18 -Name "Ubuntu com Docker-Django-Postgres Ok"
